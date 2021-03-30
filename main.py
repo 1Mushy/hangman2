@@ -3,8 +3,10 @@ import tkinter
 from tkinter import *
 from tkinter import Tk
 from tkinter import messagebox
-from random_word import RandomWords
 from tkinter import font
+
+# Imports the random word generator
+from random_word import RandomWords
 
 # Other imports 
 import time
