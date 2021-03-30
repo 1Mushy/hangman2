@@ -146,7 +146,7 @@ def check_len_user_input():
                     # This runs the function that changes the hangman visual
                     hangman_visual()
                     x = user_input
-                    Label(guess_frame, text=x, font=("Courier", 12), bg=color).pack(anchor='e', pady='1')
+                    Label(guess_frame, text=x, font=("Courier", 21, 'bold'), bg=color).pack(anchor='e', pady='3')
 
                     # Checks to make sure that the game hasn't been lost
                     if guess >= amount_of_guesses:
