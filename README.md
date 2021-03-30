@@ -2,6 +2,8 @@
 
 Dependencies:
 random-word
+tkinter
+
 
 ------
-This script plays hangman, there is currently no actualy man that shows the amount of guesses. That will hopefully come in the future. For now, there are 6 allowed guesses, this value can be changed with the "amount_of_guesses" variable. 
+This script plays hangman. The man who dies is in ASCII, make sure that the path to the "word_selection.txt" is correct in line 28. Sometimes the random-word package has some issues and glitches, which is why the word_selection file was put in place. The code needs some cleaning up, but this works.
