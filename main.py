@@ -34,10 +34,8 @@ button_color = '#5F4B8B'
 # This picks the word
 try:
     raw_word = r.get_random_word(maxLength=10, hasDictionaryDef='true')
-    print('random word gen', raw_word)
 except:
     raw_word = random.choice(f)
-    print('file', raw_word)
 
 raw_word = raw_word.lower()
 
