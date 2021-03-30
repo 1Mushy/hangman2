@@ -1,11 +1,16 @@
+# GUI
 import tkinter
-import random
 from tkinter import *
 from tkinter import Tk
 from tkinter import messagebox
-import time
 from random_word import RandomWords
 from tkinter import font
+
+# Other imports 
+import time
+import random
+
+# Variables that have to be declared on the global scope for functions
 e = None
 tmp = None
 L = None
