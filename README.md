@@ -1,8 +1,7 @@
 # hangman2
 
 Dependencies:
-random-word
-tkinter
+random-word, tkinter
 
 
 ------
