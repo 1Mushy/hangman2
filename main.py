@@ -24,6 +24,7 @@ r = RandomWords()
 amount_of_guesses = 6
 user_guessed_word = []
 hangman= None
+user_shown_word = Label
 
 f = open('./hangman2/word_selection.txt').read().splitlines()
 
@@ -65,7 +66,8 @@ b = Button(root,text='OKAY', font=('default', 15), command=lambda:[check_len_use
 b.pack()
 
 # This shows the blanks
-Label(root, text=user_guessed_word, font=("Courier", 25, 'bold'), bg=color).pack(side='bottom')
+user_shown_word = Label(root, text=user_guessed_word, font=("Courier", 25, 'bold'), bg=color)
+user_shown_word.pack(side= BOTTOM)
 
 # This is the frame for the guesses
 guess_frame = Frame(root)
@@ -78,7 +80,7 @@ hangman_frame.pack(side= LEFT)
 hangman_frame.config(bg=color)
 
 def change_display_word():
-    global L
+    global user_shown_word
     global user_guessed_word
     global user_input
     global word
@@ -93,10 +95,12 @@ def change_display_word():
             user_guessed_word.insert(x, user_input)
     x += 1
     
-    # This will add a new label with the updated known letters
+    # This will update the old label with the new known letters
     guess_frame.pack_forget()
     hangman_frame.pack_forget()
-    Label(root, text=user_guessed_word, font=("Courier", 25, 'bold'), bg=color).pack(side='bottom')
+    user_shown_word_destroy()
+    user_shown_word = Label(root, text=user_guessed_word, font=("Courier", 25, 'bold'), bg=color)
+    user_shown_word.pack(side= BOTTOM)
     guess_frame.pack(side = RIGHT)
     hangman_frame.pack(side = LEFT)
     
@@ -115,6 +119,7 @@ guess_frame.pack(side = RIGHT)
 Label(guess_frame, text="Guesses", font=("Courier", 20, 'bold', 'underline'), bg=color).pack()
 
 def check_len_user_input():
+    global user_shown_word
     global guess
     global entries
     global user_guessed_word
@@ -146,7 +151,9 @@ def check_len_user_input():
                     # This runs the function that changes the hangman visual
                     hangman_visual()
                     x = user_input
-                    Label(guess_frame, text=x, font=("Courier", 21, 'bold'), bg=color).pack(anchor='e', pady='3')
+                
+                    Label(guess_frame, text=x, font=("Courier", 21, 'bold'), bg=color).pack(anchor = 'e', pady='3')
+                    
 
                     # Checks to make sure that the game hasn't been lost
                     if guess >= amount_of_guesses:
@@ -154,7 +161,7 @@ def check_len_user_input():
                         messagebox.showinfo("You Lost", losing_var)
                         sys.exit()
                     else:
-                        messagebox.showinfo("Wrong", "your bad at guessing, try again")
+                        messagebox.showinfo("Wrong", "That letter wasn't right, try again")
 
                     
                 # If the letter is in the word, then it will change the word on the display acordingly.
@@ -236,6 +243,11 @@ def hangman_visual():
 def hangman_destroy():
     global L
     L.destroy()
+
+# This function destroys the bottom word
+def user_shown_word_destroy():
+    global user_shown_word
+    user_shown_word.destroy()
 
 
 # Runs the loop
