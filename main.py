@@ -49,19 +49,14 @@ def main_loop():
     global popup
     global r
 
+    guess = 0
+
+
     entries = []
 
 
-    # This is the background for all of the elements, the evens are bg colors, odds are the button color
+    # This is the background for all of the elements, the evens are bg colors, odds are the button color, index 3-6 aren't currently being used
     color_selection = ['#3E3E3E', '#575757', '#767676', '#E69A8D', '#fcba03', '#42EADD', '#CDB599']
-
-    # Color scheme
-    # while True:
-    #     z = random.randint(0, len(color_selection) - 1)
-    #     if z % 2 == 0:
-    #         color = color_selection[z]
-    #         button_color = color_selection[z + 1]
-    #         break
 
     color = color_selection[0]
     button_color = color_selection[1]
@@ -94,15 +89,16 @@ def main_loop():
         popup.title('?')
         popup.geometry('200x150')
         popup.resizable(width=False, height=False)
-        Label(popup, text='Play again?', font=('default', 10, 'underline')).pack()
+        popup.config(bg=color)
+        Label(popup, text='Play again?', font=('default', 15, 'bold'), bg=color).pack()
 
-        b1 = Button(popup, text='Play again', command=popup_destroy, font=('default', 10))
+        b1 = Button(popup, text='Play again', command=popup_destroy, font=('default', 10), bg=button_color)
         b1.pack(side= LEFT)
 
         def sys_exit():
             sys.exit()
 
-        Button(popup, text='Quit', command=sys_exit, font=('default', 10)).pack(side = RIGHT)
+        Button(popup, text='Quit', command=sys_exit, font=('default', 10), bg=button_color).pack(side = RIGHT)
 
         popup.mainloop()
 
