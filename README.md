@@ -11,4 +11,4 @@ This script plays hangman. The man who dies is in ASCII, make sure that the path
 \* When tested on OSX, the pyyaml package had to be installed in order to work.
 
 ------
-Still working on a way to make the script repeat itself, should be happening soon =D
+Color schemes are open to changes, im bad at making things look good
