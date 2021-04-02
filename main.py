@@ -28,13 +28,23 @@ user_shown_word = Label
 
 f = open('./hangman2/word_selection.txt').read().splitlines()
 
-# This is the background for all of the elements
-color = '#E69A8D'
-button_color = '#5F4B8B'
+# This is the background for all of the elements, the evens are bg colors, odds are the button color
+color_selection = ['#E69A8D', '#fcba03', '#42EADD', '#CDB599']
+
+while True:
+    z = random.randint(0, len(color_selection) - 1)
+    if z % 2 == 0:
+        color = color_selection[z]
+        button_color = color_selection[z + 1]
+        break
+
+print(color)
+print(button_color)
+
 
 # This picks the word
 try:
-    raw_word = r.get_random_word(maxLength=10, hasDictionaryDef='true')
+    raw_word = r.get_random_word(maxLength=7, hasDictionaryDef='true')
 except:
     raw_word = random.choice(f)
 
@@ -61,12 +71,20 @@ e = Entry(root, font=('default', 40))
 e.pack()
 e.focus_set()
 
+# Handler for when the return key is pressed
+def enter(event=None):
+    check_len_user_input()
+    clear_text()
 
-b = Button(root,text='OKAY', font=('default', 15), command=lambda:[check_len_user_input(), clear_text()], width=10, height=3, bg=button_color, relief=RIDGE)
+b = Button(root,text='OKAY', font=('default', 15, 'bold'), fg='black', command=lambda:[check_len_user_input(), clear_text()], width=10, height=3, bg=button_color, relief=RIDGE)
 b.pack()
 
+# Binding the button to the return key
+b.bind('<Return>',enter)
+root.bind('<Return>',enter)
+
 # This shows the blanks
-user_shown_word = Label(root, text=user_guessed_word, font=("Courier", 25, 'bold'), bg=color)
+user_shown_word = Label(root, text=user_guessed_word, font=("Courier", 40, 'bold'), bg=color)
 user_shown_word.pack(side= BOTTOM)
 
 # This is the frame for the guesses
@@ -99,7 +117,7 @@ def change_display_word():
     guess_frame.pack_forget()
     hangman_frame.pack_forget()
     user_shown_word_destroy()
-    user_shown_word = Label(root, text=user_guessed_word, font=("Courier", 25, 'bold'), bg=color)
+    user_shown_word = Label(root, text=user_guessed_word, font=("Courier", 40, 'bold'), bg=color)
     user_shown_word.pack(side= BOTTOM)
     guess_frame.pack(side = RIGHT)
     hangman_frame.pack(side = LEFT)
@@ -107,7 +125,7 @@ def change_display_word():
     # This happens when the user wins
     if user_guessed_word == word:
         messagebox.showinfo("Nice", "You won")
-        root.destroy()
+        sys.exit()
 
 # This is the starting point for the hangman
 L = Label(hangman_frame, text="*", font=("Courier", 25, 'bold'), fg='black', bg=color)
@@ -116,7 +134,7 @@ L.pack(side= LEFT)
 
 # This shows the failed guesses
 guess_frame.pack(side = RIGHT)
-Label(guess_frame, text="Guesses", font=("Courier", 20, 'bold', 'underline'), bg=color).pack()
+Label(guess_frame, text="Guesses", font=("Courier", 30, 'bold', 'underline'), bg=color).pack()
 
 def check_len_user_input():
     global user_shown_word
@@ -152,7 +170,7 @@ def check_len_user_input():
                     hangman_visual()
                     x = user_input
                 
-                    Label(guess_frame, text=x, font=("Courier", 21, 'bold'), bg=color).pack(anchor = 'e', pady='3')
+                    Label(guess_frame, text=x, font=("Courier", 30, 'bold'), bg=color).pack(anchor = 'e', pady='3')
                     
 
                     # Checks to make sure that the game hasn't been lost
@@ -199,42 +217,42 @@ def hangman_visual():
         hangman_destroy()
         hangman = 'O'
 
-        L = Label(hangman_frame, text=hangman, font=("Courier", 25, 'bold'), fg='black', bg=color)
+        L = Label(hangman_frame, text=hangman, font=("Courier", 35, 'bold'), fg='black', bg=color)
         L.pack(side='left', pady=1)
 
     if guess == 2:
         hangman_destroy()
         hangman = 'O\n|'
 
-        L = Label(hangman_frame, text=hangman, font=("Courier", 25, 'bold'), fg='black', bg=color)
+        L = Label(hangman_frame, text=hangman, font=("Courier", 35, 'bold'), fg='black', bg=color)
         L.pack(side='left', pady=1)
     
     if guess == 3:
         hangman_destroy()
-        hangman = ' O\n/|'
+        hangman = 'O\n/|'
 
-        L = Label(hangman_frame, text=hangman, font=("Courier", 25, 'bold'), fg='black', bg=color)
+        L = Label(hangman_frame, text=hangman, font=("Courier", 35, 'bold'), fg='black', bg=color)
         L.pack(side='left', pady=1)
     
     if guess == 4:
         hangman_destroy()
         hangman = 'O\n/|\\'
 
-        L = Label(hangman_frame, text=hangman, font=("Courier", 25, 'bold'), fg='black', bg=color)
+        L = Label(hangman_frame, text=hangman, font=("Courier", 35, 'bold'), fg='black', bg=color)
         L.pack(side='left', pady=1)
     
     if guess == 5:
         hangman_destroy()
         hangman = 'O\n/|\\\n/'
 
-        L = Label(hangman_frame, text=hangman, font=("Courier", 25, 'bold'), fg='black', bg=color)
+        L = Label(hangman_frame, text=hangman, font=("Courier", 35, 'bold'), fg='black', bg=color)
         L.pack(side='left', pady=1)
     
     if guess == 6:
         hangman_destroy()
         hangman = 'O\n/|\\\n/\\'
 
-        L = Label(hangman_frame, text=hangman, font=("Courier", 25, 'bold'), fg='black', bg=color)
+        L = Label(hangman_frame, text=hangman, font=("Courier", 35, 'bold'), fg='black', bg=color)
         L.pack(side='left', pady=1)
 
 
