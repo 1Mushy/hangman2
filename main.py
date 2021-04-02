@@ -66,7 +66,7 @@ def main_loop():
     button_color = color_selection[1]
     
     # operning the word selection file
-    f = open('./hangman2/word_selection.txt').read().splitlines()
+    f = open('./path/to/file').read().splitlines()
 
     # This picks the word
     try:
