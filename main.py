@@ -49,6 +49,7 @@ def main_loop():
     global popup
     global r
 
+    entries = []
 
 
     # This is the background for all of the elements, the evens are bg colors, odds are the button color
@@ -66,7 +67,7 @@ def main_loop():
     button_color = color_selection[1]
     
     # operning the word selection file
-    f = open('./path/to/file').read().splitlines()
+    f = open('./hangman2/word_selection.txt').read().splitlines()
 
     # This picks the word
     try:
