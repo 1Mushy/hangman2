@@ -63,7 +63,7 @@ def main_loop():
     text_color = color_selection[3]
     
     # operning the word selection file
-    f = open('./hangman2/word_selection.txt').read().splitlines()
+    f = open('./path/to/file').read().splitlines()
 
     # This picks the word
     try:
@@ -121,7 +121,7 @@ def main_loop():
         check_len_user_input()
         clear_text()
 
-    b = Button(root,text='OKAY', font=('default', 15, 'bold'), command=lambda:[check_len_user_input(), clear_text()], width=10, height=3, bg=button_color, relief=RIDGE, fg=text_color)
+    b = Button(root,text='OKAY', font=('default', 15, 'bold'), command=lambda:[check_len_user_input(), clear_text()], width=10, height=3, bg=button_color, relief=GROOVE, fg=text_color)
     b.pack(pady=5)
 
     # Binding the button to the return key
